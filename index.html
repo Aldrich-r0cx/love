@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Belinda ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating hearts background */
+        .floating-heart {
+            position: fixed;
+            color: rgba(255, 255, 255, 0.6);
+            animation: floatUp linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 
+                0 10px 30px rgba(255, 105, 180, 0.4),
+                inset 0 0 20px rgba(255, 182, 193, 0.3);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            border: 4px solid #ff69b4;
+        }
+
+        h1 {
+            color: #ff1493;
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            text-shadow: 
+                3px 3px 0px #ffb6c1,
+                -1px -1px 0 #fff;
+            line-height: 1.5;
+            animation: pixelBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes pixelBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .heart-beat {
+            color: #ff1493;
+            animation: pixelHeartbeat 1s steps(2) infinite;
+            display: inline-block;
+        }
+
+        @keyframes pixelHeartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 0.8em;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.1s;
+            font-family: 'Press Start 2P', cursive;
+            text-transform: uppercase;
+            box-shadow: 
+                4px 4px 0px rgba(0,0,0,0.3),
+                inset -2px -2px 0px rgba(0,0,0,0.2),
+                inset 2px 2px 0px rgba(255,255,255,0.5);
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        button:active {
+            top: 4px;
+            left: 4px;
+            box-shadow: 
+                0px 0px 0px rgba(0,0,0,0.3),
+                inset -2px -2px 0px rgba(0,0,0,0.2),
+                inset 2px 2px 0px rgba(255,255,255,0.5);
+        }
+
+        .yes-btn {
+            background: #32cd32;
+            color: white;
+            border: 3px solid #228b22;
+        }
+
+        .yes-btn:hover {
+            background: #3cb371;
+            transform: scale(1.05);
+        }
+
+        .no-btn {
+            background: #ff4444;
+            color: white;
+            border: 3px solid #cc0000;
+        }
+
+        .no-btn:hover {
+            background: #ff6666;
+        }
+
+        .no-btn.shrinking {
+            animation: pixelShrink 0.6s steps(5) forwards;
+        }
+
+        @keyframes pixelShrink {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(0.8);
+            }
+            40% {
+                transform: scale(0.6);
+            }
+            60% {
+                transform: scale(0.4);
+            }
+            80% {
+                transform: scale(0.2);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 0.7em;
+            color: #ff1493;
+            min-height: 40px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            text-shadow: 2px 2px 0px #ffb6c1;
+            line-height: 1.6;
+        }
+
+        .message.show {
+            opacity: 1;
+            animation: pixelShake 0.5s steps(4) 3;
+        }
+
+        @keyframes pixelShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
+        }
+
+        .eminem-container {
+            display: none;
+            animation: pixelAppear 0.8s steps(8) forwards;
+        }
+
+        .eminem-container.show {
+            display: block;
+        }
+
+        @keyframes pixelAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(-10deg);
+                filter: blur(10px);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.5) rotate(-5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+                filter: blur(0);
+            }
+        }
+
+        .eminem-img {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 0;
+            margin: 20px 0;
+            box-shadow: 
+                8px 8px 0px rgba(0,0,0,0.3),
+                inset 0 0 20px rgba(255,255,255,0.3);
+            border: 4px solid #ff69b4;
+            image-rendering: pixelated;
+        }
+
+        .final-message {
+            font-size: 0.8em;
+            color: #ff1493;
+            font-weight: bold;
+            margin-top: 20px;
+            line-height: 2;
+            text-shadow: 
+                3px 3px 0px #ffb6c1,
+                -1px -1px 0 #fff;
+        }
+
+        .question-section {
+            transition: opacity 0.5s;
+        }
+
+        .question-section.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .pixel-emoji {
+            font-size: 2em;
+            display: inline-block;
+            animation: pixelFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes pixelFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 1.2em;
+            animation: sparkleAnim 1s steps(10) forwards;
+            pointer-events: none;
+        }
+
+        @keyframes sparkleAnim {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        .pixel-border {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 4px dashed #ff69b4;
+            border-radius: 30px;
+            animation: borderRotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes borderRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div id="heartsContainer"></div>
+
+    <div class="container">
+        <div class="pixel-border"></div>
+        
+        <div class="question-section" id="questionSection">
+            <h1>KAMU MASIH SUKA<br>SAMA AKU GA BELINDA? <span class="heart-beat">❤️</span></h1>
+            
+            <div class="buttons">
+                <button class="yes-btn" onclick="handleYes()">YES ❤️</button>
+                <button class="no-btn" id="noBtn" onclick="handleNo()">NO 💔</button>
+            </div>
+            
+            <div class="message" id="message"></div>
+        </div>
+
+        <div class="eminem-container" id="eminemSection">
+            <div class="pixel-emoji">🌹</div>
+            <img src="https://i.imgur.com/JqYeYnX.jpeg" 
+                 alt="Eminem giving flowers" 
+                 class="eminem-img" 
+                 id="eminemImg"
+                 onerror="this.src='eminem.png'">
+            <div class="final-message">
+                YA AKU TAU SIHH BELINDA SAYANGKU<br>
+                YOU ARE LITERALLY<br>
+                OBSESSED WITH ME! 😎
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        const messages = [
+            "GA BOLEH ❤️",
+            "WAJIB YES BELINDA! 😏",
+            "JUST SAY YES! 💕",
+            "I KNOW YOU LOVE ME! 😘",
+            "TEKAN YES AJA BELINDA 🥰",
+            "YOU CAN'T SAY NO! 💝",
+            "ADMIT IT! YOU LOVE ME! 💗",
+            "JUJUR AJA SAYANG! 💖",
+            "I KNOW YOU CAN'T SAY NO! 💘",
+            "COME ON, JUST SAY YES! 💓",
+            "HARUS YES! ❤️",
+        ];
+
+        // Create floating hearts
+        function createFloatingHearts() {
+            const container = document.getElementById('heartsContainer');
+            const hearts = ['❤️', '💖', '💕', '💗', '💝', '💘', '💓'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                container.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 10000);
+            }, 500);
+        }
+
+        function handleNo() {
+            const noBtn = document.getElementById('noBtn');
+            const message = document.getElementById('message');
+            
+            // Create sparkles
+            createSparkles(noBtn);
+            
+            noBtn.classList.add('shrinking');
+            
+            setTimeout(() => {
+                message.textContent = messages[noClickCount % messages.length];
+                message.classList.add('show');
+                noClickCount++;
+                
+                setTimeout(() => {
+                    noBtn.classList.remove('shrinking');
+                    noBtn.style.transform = 'scale(1)';
+                    noBtn.style.opacity = '1';
+                }, 800);
+            }, 600);
+        }
+
+        function handleYes() {
+            const questionSection = document.getElementById('questionSection');
+            const eminemSection = document.getElementById('eminemSection');
+            
+            // Create explosion of hearts
+            createHeartExplosion();
+            
+            questionSection.classList.add('hide');
+            
+            setTimeout(() => {
+                questionSection.style.display = 'none';
+                eminemSection.classList.add('show');
+            }, 500);
+        }
+
+        function createSparkles(element) {
+            const rect = element.getBoundingClientRect();
+            for (let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.textContent = '✨';
+                sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        }
+
+        function createHeartExplosion() {
+            const hearts = ['❤️', '💖', '💕', '💗', '💝', '💘'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.style.position = 'fixed';
+                    heart.style.left = '50%';
+                    heart.style.top = '50%';
+                    heart.style.fontSize = '2em';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '100';
+                    heart.style.transition = 'all 1s ease-out';
+                    
+                    const angle = (Math.PI * 2 * i) / 30;
+                    const velocity = 200 + Math.random() * 200;
+                    const tx = Math.cos(angle) * velocity;
+                    const ty = Math.sin(angle) * velocity;
+                    
+                    document.body.appendChild(heart);
+                    
+                    requestAnimationFrame(() => {
+                        heart.style.transform = `translate(${tx}px, ${ty}px) scale(0)`;
+                        heart.style.opacity = '0';
+                    });
+                    
+                    setTimeout(() => heart.remove(), 1000);
+                }, i * 50);
+            }
+        }
+
+        // Start floating hearts
+        createFloatingHearts();
+    </script>
+</body>
+</html>
